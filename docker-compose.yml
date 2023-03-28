@@ -1,0 +1,24 @@
+version: '3.7'
+
+x-logging:
+    &json-logging
+    driver: json-file
+    options:
+        max-size: "1m"
+        max-file: "3"
+
+services:
+    codon:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                TZ: 'Asia/Tokyo'
+        image: codon
+        container_name: codon
+        environment:
+            - TZ=Asia/Tokyo
+        volumes:
+            - ./src:/code
+        restart: "no"
+        logging: *json-logging
