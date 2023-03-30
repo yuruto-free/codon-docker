@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom files defined by user
+src/*
+!src/*.py

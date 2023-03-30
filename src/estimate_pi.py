@@ -1,9 +1,10 @@
 import time
 from datetime import timedelta
+from python import math
 
 @python
-def printf(data):
-    print('{:.15f}'.format(data))
+def printf(data, _format):
+    print(_format.format(data))
 
 def Leibniz(max_iter : int):
     arr = reversed(range(max_iter))
@@ -22,7 +23,9 @@ if __name__ == '__main__':
     # estimate pi
     hat_pi = Leibniz(max_iter)
     elapsed_time = time.time() - start_time
+    err = math.fabs(hat_pi - math.pi) / math.pi
     output = str(timedelta(seconds=elapsed_time))
 
-    printf(hat_pi)
+    printf(hat_pi, 'Estimated Pi: {:.15f}')
+    printf(err,    'Relative Err: {:.15e}')
     print(output)
